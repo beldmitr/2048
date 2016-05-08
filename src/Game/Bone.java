@@ -100,8 +100,8 @@ public class Bone {
 	}
 
 	/*
-	 * Merges are used to set a text (value of a bone) to center position.
-	 * Merges depends on text size
+	 * Margins are used to set a text (value of a bone) to center position.
+	 * Margins depends on text size
 	 */
 	private void setFontMargin(int number) {
 		switch (Integer.toString(number).length()) {
