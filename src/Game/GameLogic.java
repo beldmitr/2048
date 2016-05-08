@@ -44,7 +44,10 @@ public class GameLogic {
 
 		timeline = new Timeline();
 		update = new KeyFrame(Duration.millis(TIME_FIGURE_CREATION), e -> {
-			// If was changing -> create new bone, but with a little late
+			/*
+			 * If was changing than create new bone, but with a little late
+			 * Late is defined by TIME_FIGURE_CREATION
+			 */
 			if (wasChanges) {
 				field.createRandomFigure();
 				wasChanges = false;

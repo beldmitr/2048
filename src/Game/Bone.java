@@ -11,7 +11,7 @@ public class Bone {
 
 	private double marginFontX;
 	private double marginFontY;
-	private final int FONT_SIZE = 46;
+	private final int FONT_SIZE = 42;
 
 	private int x;
 	private int y;
@@ -106,22 +106,22 @@ public class Bone {
 	private void setFontMargin(int number) {
 		switch (Integer.toString(number).length()) {
 		case 1:
-			marginFontX = -12;
+			marginFontX = -10;
 			marginFontY = 14;
 			break;
 
 		case 2:
-			marginFontX = -24;
+			marginFontX = -22;
 			marginFontY = 14;
 			break;
 
 		case 3:
-			marginFontX = -37;
+			marginFontX = -34;
 			marginFontY = 14;
 			break;
 
 		case 4:
-			marginFontX = -50;
+			marginFontX = -46;
 			marginFontY = 14;
 			break;
 
