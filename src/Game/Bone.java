@@ -139,8 +139,8 @@ public class Bone {
 	public void setNumber(int number) {
 		this.number = number;
 		/*
-		 * Remove old text from a gamePane and below new text with actual merges
-		 * and actual color will be added
+		 * Remove old text from a gamePane and below will be added new text with actual margins
+		 * and actual colors
 		 */
 
 		gamePane.getChildren().remove(text);

@@ -89,7 +89,7 @@ public class Field {
 	private boolean joinTop() {
 		/*
 		 * wasChanges is used to define that there was some changes. In this
-		 * case, for example, that there was a merging. I use this result in
+		 * case, for example, there was a merging. I use this result in
 		 * GameLogic class in method dispatcherKeys
 		 */
 
@@ -117,7 +117,7 @@ public class Field {
 	private boolean joinRight() {
 		/*
 		 * wasChanges is used to define that there was some changes. In this
-		 * case, for example, that there was a merging. I use this result in
+		 * case, for example, there was a merging. I use this result in
 		 * GameLogic class in method dispatcherKeys
 		 */
 		boolean wasChanges = false;
@@ -145,7 +145,7 @@ public class Field {
 	private boolean joinBottom() {
 		/*
 		 * wasChanges is used to define that there was some changes. In this
-		 * case, for example, that there was a merging. I use this result in
+		 * case, for example, there was a merging. I use this result in
 		 * GameLogic class in method dispatcherKeys
 		 */
 		boolean wasChanges = false;
@@ -172,7 +172,7 @@ public class Field {
 	private boolean joinLeft() {
 		/*
 		 * wasChanges is used to define that there was some changes. In this
-		 * case, for example, that there was a merging. I use this result in
+		 * case, for example, there was a merging. I use this result in
 		 * GameLogic class in method dispatcherKeys
 		 */
 		boolean wasChanges = false;
@@ -202,7 +202,7 @@ public class Field {
 		Bone[][] newBones = new Bone[NUMBER_OF_FIELD][NUMBER_OF_FIELD];
 		/*
 		 * wasChanges is used to define that there was some changes. In this
-		 * case, for example, that there was a moving. I use this result in
+		 * case, for example, there was a moving. I use this result in
 		 * GameLogic class in method dispatcherKeys
 		 */
 		boolean wasChanges = false;
@@ -234,7 +234,7 @@ public class Field {
 		Bone[][] newBones = new Bone[NUMBER_OF_FIELD][NUMBER_OF_FIELD];
 		/*
 		 * wasChanges is used to define that there was some changes. In this
-		 * case, for example, that there was a moving. I use this result in
+		 * case, for example, there was a moving. I use this result in
 		 * GameLogic class in method dispatcherKeys
 		 */
 		boolean wasChanges = false;
@@ -266,7 +266,7 @@ public class Field {
 		Bone[][] newBones = new Bone[NUMBER_OF_FIELD][NUMBER_OF_FIELD];
 		/*
 		 * wasChanges is used to define that there was some changes. In this
-		 * case, for example, that there was a moving. I use this result in
+		 * case, for example, there was a moving. I use this result in
 		 * GameLogic class in method dispatcherKeys
 		 */
 		boolean wasChanges = false;
@@ -298,7 +298,7 @@ public class Field {
 		Bone[][] newBones = new Bone[NUMBER_OF_FIELD][NUMBER_OF_FIELD];
 		/*
 		 * wasChanges is used to define that there was some changes. In this
-		 * case, for example, that there was a moving. I use this result in
+		 * case, for example, there was a moving. I use this result in
 		 * GameLogic class in method dispatcherKeys
 		 */
 		boolean wasChanges = false;
