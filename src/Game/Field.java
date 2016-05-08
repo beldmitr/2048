@@ -19,6 +19,8 @@ public class Field {
 	private final int SCORE_MARGIN_Y = 15;
 
 	private List<Coordinate> freePlaces = new ArrayList<>();
+
+	// Bones on the table
 	private Bone[][] bones = new Bone[NUMBER_OF_FIELD][NUMBER_OF_FIELD];
 	private Pane gamePane;
 	private Score score;
@@ -33,11 +35,11 @@ public class Field {
 		squareWidth = fieldWidth / NUMBER_OF_FIELD;
 		squareHeight = fieldHeight / NUMBER_OF_FIELD;
 
-		drawLines();
+		drawGrid();
 		score = new Score(gamePane, fieldWidth + SCORE_MARGIN_X, SCORE_MARGIN_Y);
 	}
 
-	private void drawLines() {
+	private void drawGrid() {
 		for (int i = 0; i < NUMBER_OF_FIELD + 1; i++) {
 			Line verticalLine = new Line(i * squareWidth, 0, i * squareWidth, fieldHeight);
 			verticalLine.setStrokeWidth(LINE_WIDTH);
@@ -48,12 +50,6 @@ public class Field {
 			gamePane.getChildren().add(verticalLine);
 			gamePane.getChildren().add(horizontalLine);
 		}
-
-		for (int j = 0; j < NUMBER_OF_FIELD; j++) {
-			for (int i = 0; i < NUMBER_OF_FIELD; i++) {
-				bones[i][j] = null;
-			}
-		}
 	}
 
 	public void createRandomFigure() {
@@ -62,6 +58,7 @@ public class Field {
 
 		getFreePlaces();
 
+		// Choose some random position from a list of free cells
 		Coordinate c = freePlaces.get(random.nextInt(freePlaces.size()));
 
 		int number = 2;
@@ -88,9 +85,14 @@ public class Field {
 		}
 	}
 
-	// joins
-
+	// Rules for merging 2 cells to 1 cell with bigger value
 	private boolean joinTop() {
+		/*
+		 * wasChanges is used to define that there was some changes. In this
+		 * case, for example, that there was a merging. I use this result in
+		 * GameLogic class in method dispatcherKeys
+		 */
+
 		boolean wasChanges = false;
 		for (int j = 1; j < NUMBER_OF_FIELD; j++) {
 			for (int i = 0; i < NUMBER_OF_FIELD; i++) {
@@ -113,6 +115,11 @@ public class Field {
 	}
 
 	private boolean joinRight() {
+		/*
+		 * wasChanges is used to define that there was some changes. In this
+		 * case, for example, that there was a merging. I use this result in
+		 * GameLogic class in method dispatcherKeys
+		 */
 		boolean wasChanges = false;
 		for (int j = 0; j < NUMBER_OF_FIELD; j++) {
 			for (int i = NUMBER_OF_FIELD - 2; i >= 0; i--) {
@@ -136,6 +143,11 @@ public class Field {
 	}
 
 	private boolean joinBottom() {
+		/*
+		 * wasChanges is used to define that there was some changes. In this
+		 * case, for example, that there was a merging. I use this result in
+		 * GameLogic class in method dispatcherKeys
+		 */
 		boolean wasChanges = false;
 		for (int j = NUMBER_OF_FIELD - 2; j >= 0; j--) {
 			for (int i = 0; i < NUMBER_OF_FIELD; i++) {
@@ -158,6 +170,11 @@ public class Field {
 	}
 
 	private boolean joinLeft() {
+		/*
+		 * wasChanges is used to define that there was some changes. In this
+		 * case, for example, that there was a merging. I use this result in
+		 * GameLogic class in method dispatcherKeys
+		 */
 		boolean wasChanges = false;
 		for (int j = 0; j < NUMBER_OF_FIELD; j++) {
 			for (int i = 1; i < NUMBER_OF_FIELD; i++) {
@@ -179,10 +196,15 @@ public class Field {
 		return wasChanges;
 	}
 
-	// moves
+	// Rules for moving
 
 	private boolean moveBonesTop() {
 		Bone[][] newBones = new Bone[NUMBER_OF_FIELD][NUMBER_OF_FIELD];
+		/*
+		 * wasChanges is used to define that there was some changes. In this
+		 * case, for example, that there was a moving. I use this result in
+		 * GameLogic class in method dispatcherKeys
+		 */
 		boolean wasChanges = false;
 
 		for (int j = 1; j < NUMBER_OF_FIELD; j++) {
@@ -194,6 +216,7 @@ public class Field {
 			}
 		}
 
+		// Makes new actual matrix with bones
 		for (int j = 0; j < NUMBER_OF_FIELD; j++) {
 			for (int i = 0; i < NUMBER_OF_FIELD; i++) {
 				if (bones[i][j] != null) {
@@ -209,6 +232,11 @@ public class Field {
 
 	private boolean moveBonesRight() {
 		Bone[][] newBones = new Bone[NUMBER_OF_FIELD][NUMBER_OF_FIELD];
+		/*
+		 * wasChanges is used to define that there was some changes. In this
+		 * case, for example, that there was a moving. I use this result in
+		 * GameLogic class in method dispatcherKeys
+		 */
 		boolean wasChanges = false;
 
 		for (int j = 0; j < NUMBER_OF_FIELD; j++) {
@@ -220,6 +248,7 @@ public class Field {
 			}
 		}
 
+		// Makes new actual matrix with bones
 		for (int j = 0; j < NUMBER_OF_FIELD; j++) {
 			for (int i = 0; i < NUMBER_OF_FIELD; i++) {
 				if (bones[i][j] != null) {
@@ -235,6 +264,11 @@ public class Field {
 
 	private boolean moveBonesBottom() {
 		Bone[][] newBones = new Bone[NUMBER_OF_FIELD][NUMBER_OF_FIELD];
+		/*
+		 * wasChanges is used to define that there was some changes. In this
+		 * case, for example, that there was a moving. I use this result in
+		 * GameLogic class in method dispatcherKeys
+		 */
 		boolean wasChanges = false;
 
 		for (int j = 0; j < NUMBER_OF_FIELD - 1; j++) {
@@ -246,6 +280,7 @@ public class Field {
 			}
 		}
 
+		// Makes new actual matrix with bones
 		for (int j = 0; j < NUMBER_OF_FIELD; j++) {
 			for (int i = 0; i < NUMBER_OF_FIELD; i++) {
 				if (bones[i][j] != null) {
@@ -261,6 +296,11 @@ public class Field {
 
 	private boolean moveBonesLeft() {
 		Bone[][] newBones = new Bone[NUMBER_OF_FIELD][NUMBER_OF_FIELD];
+		/*
+		 * wasChanges is used to define that there was some changes. In this
+		 * case, for example, that there was a moving. I use this result in
+		 * GameLogic class in method dispatcherKeys
+		 */
 		boolean wasChanges = false;
 
 		for (int j = 0; j < NUMBER_OF_FIELD; j++) {
@@ -285,21 +325,32 @@ public class Field {
 		return wasChanges;
 	}
 
-	// MOVES
+	// Action on key press
+
+	/*
+	 * On press button up: Move top Merge Move top
+	 */
 
 	public boolean pressedTop() {
+		/*
+		 * wasChanges is used to define that there was some changes. I use this
+		 * result in GameLogic class in method dispatcherKeys
+		 */
 		boolean wasChanges = false;
 
+		// Move top
 		for (int i = 0; i < NUMBER_OF_FIELD; i++) {
 			if (moveBonesTop()) {
 				wasChanges = true;
 			}
 		}
 
+		// Merge
 		if (joinTop()) {
 			wasChanges = true;
 		}
 
+		// Move top
 		for (int i = 0; i < NUMBER_OF_FIELD; i++) {
 			if (moveBonesTop()) {
 				wasChanges = true;
@@ -309,7 +360,14 @@ public class Field {
 		return wasChanges;
 	}
 
+	/*
+	 * Move right Merge Move right
+	 */
 	public boolean pressedRight() {
+		/*
+		 * wasChanges is used to define that there was some changes. I use this
+		 * result in GameLogic class in method dispatcherKeys
+		 */
 		boolean wasChanges = false;
 
 		for (int i = 0; i < NUMBER_OF_FIELD; i++) {
@@ -331,7 +389,14 @@ public class Field {
 		return wasChanges;
 	}
 
+	/*
+	 * Move down Merge Move down
+	 */
 	public boolean pressedBottom() {
+		/*
+		 * wasChanges is used to define that there was some changes. I use this
+		 * result in GameLogic class in method dispatcherKeys
+		 */
 		boolean wasChanges = false;
 
 		for (int i = 0; i < NUMBER_OF_FIELD; i++) {
@@ -353,7 +418,14 @@ public class Field {
 		return wasChanges;
 	}
 
+	/*
+	 * Move left Merge Move left
+	 */
 	public boolean pressedLeft() {
+		/*
+		 * wasChanges is used to define that there was some changes. I use this
+		 * result in GameLogic class in method dispatcherKeys
+		 */
 		boolean wasChanges = false;
 
 		for (int i = 0; i < NUMBER_OF_FIELD; i++) {

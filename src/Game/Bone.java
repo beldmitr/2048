@@ -9,8 +9,8 @@ import javafx.scene.text.Text;
 
 public class Bone {
 
-	private double marginFontX = -50;
-	private double marginFontY = 10;
+	private double marginFontX;
+	private double marginFontY;
 	private final int FONT_SIZE = 46;
 
 	private int x;
@@ -44,6 +44,7 @@ public class Bone {
 		gamePane.getChildren().add(text);
 	}
 
+	// Different bones has got different background and font color
 	private void setColors(int number) {
 		switch (number) {
 		case 2:
@@ -98,6 +99,10 @@ public class Bone {
 		}
 	}
 
+	/*
+	 * Merges are used to set a text (value of a bone) to center position.
+	 * Merges depends on text size
+	 */
 	private void setFontMargin(int number) {
 		switch (Integer.toString(number).length()) {
 		case 1:
@@ -133,6 +138,11 @@ public class Bone {
 
 	public void setNumber(int number) {
 		this.number = number;
+		/*
+		 * Remove old text from a gamePane and below new text with actual merges
+		 * and actual color will be added
+		 */
+
 		gamePane.getChildren().remove(text);
 
 		setFontMargin(number);
@@ -140,6 +150,7 @@ public class Bone {
 		text.setFont(Font.font(FONT_SIZE));
 		setColors(number);
 
+		// Add actual text
 		gamePane.getChildren().add(text);
 	}
 

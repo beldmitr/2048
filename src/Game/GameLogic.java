@@ -20,6 +20,11 @@ public class GameLogic {
 
 	private int size;
 
+	/*
+	 * Variable wasChange means that there was some changes after key pressing.
+	 * And if there was changes it creates new bone, but with some late. I use
+	 * for this aim Timeline and KeyFrame in method "start();"
+	 */
 	private boolean wasChanges = false;
 
 	public GameLogic(Pane gamePane, int size) {
@@ -39,6 +44,7 @@ public class GameLogic {
 
 		timeline = new Timeline();
 		update = new KeyFrame(Duration.millis(TIME_FIGURE_CREATION), e -> {
+			// If was changing -> create new bone, but with a little late
 			if (wasChanges) {
 				field.createRandomFigure();
 				wasChanges = false;
@@ -55,21 +61,29 @@ public class GameLogic {
 		if (!wasChanges) {
 			switch (e.getCode()) {
 			case UP:
+				// Do something only if was changes (for example, moving or
+				// merging)
 				if (field.pressedTop()) {
 					wasChanges = true;
 				}
 				break;
 			case RIGHT:
+				// Do something only if was changes (for example, moving or
+				// merging)
 				if (field.pressedRight()) {
 					field.createRandomFigure();
 				}
 				break;
 			case DOWN:
+				// Do something only if was changes (for example, moving or
+				// merging)
 				if (field.pressedBottom()) {
 					wasChanges = true;
 				}
 				break;
 			case LEFT:
+				// Do something only if was changes (for example, moving or
+				// merging)
 				if (field.pressedLeft()) {
 					wasChanges = true;
 				}
